@@ -17,13 +17,17 @@
         android:icon="@drawable/icon"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".CallActivity"
-            android:label="Make a Call"
-            android:screenOrientation="portrait">
+            android:name=".LoginActivity"
+            android:label="Log In">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CallActivity"
+            android:label="Make a Call"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

@@ -1,8 +1,10 @@
 package com.sinch.apptoappcall;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,15 +24,21 @@ public class CallActivity extends ActionBarActivity {
     private TextView callState;
     private SinchClient sinchClient;
     private Button button;
+    private String callerId;
+    private String recipientId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.call);
 
+        Intent intent = getIntent();
+        callerId = intent.getStringExtra("callerId");
+        recipientId = intent.getStringExtra("recipientId");
+
         sinchClient = Sinch.getSinchClientBuilder()
             .context(this)
-            .userId("current-user-id")
+            .userId(callerId)
             .applicationKey("key")
             .applicationSecret("secret")
             .environmentHost("sandbox.sinch.com")
@@ -49,7 +57,7 @@ public class CallActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if (call == null) {
-                    call = sinchClient.getCallClient().callUser("call-recipient-id");
+                    call = sinchClient.getCallClient().callUser(recipientId);
                     call.addCallListener(new SinchCallListener());
                     button.setText("Hang Up");
                 } else {

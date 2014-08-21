@@ -11,10 +11,9 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/callState"
-        android:layout_above="@+id/button"
         android:gravity="center_horizontal"
+        android:layout_above="@+id/button"
         android:layout_marginBottom="30dp"/>
 
     <Button
@@ -22,8 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Call"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:background="@color/purple"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"/>
 </RelativeLayout>
