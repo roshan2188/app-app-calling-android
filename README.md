@@ -2,8 +2,7 @@
 
 This tutorial will walk you through building a very simple Android VoIP calling app. It will look something like this when you are finished:</p>
 
-<img id="make-call" src="images/call.png" style="width:48%;">
-<img id="hang-up" src="images/hangup.png" style="width:49%;">
+<img id="make-call" src="images/call-hangup.png">
        
        
 The completed source code for this tutorial is available at <a href="http://www.github.com/sinch/app-app-calling-android" target="_blank">github.com/sinch/app-app-calling-android</a></p>
