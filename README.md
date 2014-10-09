@@ -2,8 +2,8 @@
 
 This tutorial will walk you through building a very simple Android VoIP calling app. It will look something like this when you are finished:</p>
 
-<img id="make-call" src="images/call.png">
-<img id="hang-up" src="images/hangup.png">
+<img id="make-call" src="images/call.png" style="width:48%;">
+<img id="hang-up" src="images/hangup.png" style="width:49%;">
        
        
 The completed source code for this tutorial is available at <a href="http://www.github.com/sinch/app-app-calling-android" target="_blank">github.com/sinch/app-app-calling-android</a></p>
@@ -241,7 +241,7 @@ private Call call;
   
 <p>In this section, you are going to add a simple login screen so that users can call more than just one person. Your login screen will look like this:</p>
        
-  <img src="images/login-screen.png" id="login-screen">
+  <img src="images/login-screen.png" id="login-screen" style="width:50%; margin:auto; display:block;">
        
 <p>To set this up, you will need to do the following:</p>
   
