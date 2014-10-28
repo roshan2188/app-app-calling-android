@@ -31,8 +31,9 @@ Next, download the Sinch Android SDK from <a href="http://www.sinch.com/download
 <p>Lastly, Sinch requires a few permissions. Head over <b>AndroidManifest.xml</b> and add the following:</p>
 
 	<uses-feature
-	android:name="android.hardware.microphone"
-	android:required="false">;
+	    android:name="android.hardware.microphone"
+	    android:required="false"/>
+	
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
 	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
@@ -44,12 +45,12 @@ Next, download the Sinch Android SDK from <a href="http://www.sinch.com/download
 <p>First, create a new xml file, and name it <b>call.xml</b>. Add a simple "Call" button:</p>
 
 	<Button
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:text="Call"
-	android:id="@+id/button"
-	android:layout_centerVertical="true"
-	android:layout_centerHorizontal="true" />
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="Call"
+	    android:id="@+id/button"
+	    android:layout_centerVertical="true"
+	    android:layout_centerHorizontal="true" />
 
 <p>Now, create a new activity, <b>CallActivity</b>, where your user can make a phone call upon the click of the call button.</p>
 
@@ -63,30 +64,30 @@ android:screenOrientation="portrait"
 
 	button = (Button) findViewById(R.id.button);
 	button.setOnClickListener(new View.OnClickListener() {
-	@Override
-	public void onClick(View view) {
-	   // make a call!
-	}
+	    @Override
+	    public void onClick(View view) {
+	       // make a call!
+	    }
 	});
 
 <p>To make a call, you first need to create an instance of SinchClient:</p>
 
 	sinchClient = Sinch.getSinchClientBuilder()
-	.context(this)
-	.userId("current-user-id")
-	.applicationKey("app-key")
-	.applicationSecret("app-secret")
-	.environmentHost("sandbox.sinch.com")
-	.build();
+	        .context(this)
+	        .userId("current-user-id")
+	        .applicationKey("app-key")
+	        .applicationSecret("app-secret")
+	        .environmentHost("sandbox.sinch.com")
+	        .build();
 
 <p>Make sure to fill in app-key and app-secret with the key and secret you generated when creating an app in the dashboard! Then, tell the sinch client that you want to have calling in your app, and finally, start the client:</p>
 
-sinchClient.setSupportCalling(true);
-sinchClient.start();
+    sinchClient.setSupportCalling(true); 
+    sinchClient.start();
 
 <p>Inside the OnClickListener, you will make the call:</p>
 
-`sinchClient.getCallClient().callUser("call-recipient-id");`
+    sinchClient.getCallClient().callUser("call-recipient-id");
 
 <p>To make a test call, you will use the calling sample app included in the SDK for your recipient. Open sinch-rtc-sample-calling in Android Studio, input the same keys you used above, and run the app. Once you log in as "call-recipient-id," this app will be able to receive incoming calls from the app you are currently building. Give it a try!</p>
 
@@ -107,38 +108,38 @@ private Call call;
 <p>Inside the onClickListener, you can make a call or hang up the current call depending on whether or not call is null:</p>
 
 	class=java>public void onClick(View view) {
-	if (call == null) {
-	call = sinchClient.getCallClient().callUser("call-recipient-id");
-	button.setText("Hang Up");
-	} else {
-	call.hangup();
-	call = null;
-	button.setText("Call");
-	}
+	    if (call == null) {
+	        call = sinchClient.getCallClient().callUser("call-recipient-id");
+	        button.setText("Hang Up");
+	    } else {
+	        call.hangup();
+	        call = null;
+	        button.setText("Call");
+	    }
 	}
 
 <p>Unfortunately, this only handles the user hanging up. You will also want your app to react accordingly if the recipient hangs up. To track these changes, you will set up a CallListener that can execute code depending on the state of phone call:</p>
 
 	private class SinchCallListener implements CallListener {
-	@Override
-	public void onCallEnded(Call endedCall) {
-	   //call ended by either party
-	}
+	    @Override
+	    public void onCallEnded(Call endedCall) {
+	       //call ended by either party
+	    }
 
-	@Override
-	public void onCallEstablished(Call establishedCall) {
-	   //incoming call was picked up
-	}
+	    @Override
+	    public void onCallEstablished(Call establishedCall) {
+	       //incoming call was picked up
+	    }
 
-	@Override
-	public void onCallProgressing(Call progressingCall) {
-	  //call is ringing
-	}
+	    @Override
+	    public void onCallProgressing(Call progressingCall) {
+	      //call is ringing
+	    }
 
-	@Override
-	public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
-	   //don't worry about this right now
-	}
+	    @Override
+	    public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
+	       //don't worry about this right now
+	    }
 	}
 
 <p>Then, add an instance of SinchCallListener to the current call in your OnClickListener:</p>
@@ -156,25 +157,25 @@ private Call call;
 
 	@Override
 	public void onCallEstablished(Call establishedCall) {
-	setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+	    setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 	}
 
 	<p>Then, to have the volume buttons go back to controlling the ringer volume when the phone call is disconnected:</p>
 
 	@Override
 	public void onCallEnded(Call endedCall) { 
-	setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+	    setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
 	}
 
 <p>To update the user on the state of the call (ringing, connected), create a textView that will appear above the button:</p>
 
 	<TextView
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:id="@+id/callState"
-	android:layout_above="@+id/button"
-	android:gravity="center_horizontal"
-	android:layout_marginBottom="30dp"/>
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/callState"
+	    android:layout_above="@+id/button"
+	    android:gravity="center_horizontal"
+	    android:layout_marginBottom="30dp"/>
 
 <p>In onCreate, define the textView:</p>
 
@@ -204,10 +205,10 @@ private Call call;
 	sinchClient.getCallClient().addCallClientListener(new SinchCallClientListener());    
 
 	private class SinchCallClientListener implements CallClientListener {
-	@Override
-	public void onIncomingCall(CallClient callClient, Call incomingCall) {
-	//Pick up the call!
-	}
+	    @Override
+	    public void onIncomingCall(CallClient callClient, Call incomingCall) {
+	        //Pick up the call!
+	    }
 	}
 
 <p>In onIncomingCall, you will need to do the following:</p>
@@ -253,32 +254,32 @@ private Call call;
 <p>Start by creating a new activity, <b>LoginActivity</b>. In the view for this activity, you will need two EditTexts and a login button:</p>
        
 	<EditText
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:id="@+id/callerId"
-	android:hint="Caller Name"/>
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/callerId"
+	    android:hint="Caller Name"/>
 
 	<EditText
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:id="@+id/recipientId"
-	android:layout_below="@+id/callerId"
-	android:hint="Recipient Name"/>
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/recipientId"
+	    android:layout_below="@+id/callerId"
+	    android:hint="Recipient Name"/>
 
 	<Button
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:id="@+id/loginButton"
-	android:text="Login"
-	android:layout_below="@+id/recipientId"/>
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/loginButton"
+	    android:text="Login"
+	    android:layout_below="@+id/recipientId"/>
        
 <p>That is all you'll need in the login view. Head back to <b>LoginActivity.java</b> to add an OnClickListener for the login button:</p>
   
 	findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
-	@Override
-	public void onClick(View view) {
-	//start CallActivity
-	}
+	    @Override
+	    public void onClick(View view) {
+	        //start CallActivity
+	    }
 	});
        
 <p>When starting <b>CallActivity</b>, you'll want to pass along callerId and recipientId as string extras:</p>
