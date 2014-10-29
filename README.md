@@ -62,7 +62,7 @@ android:screenOrientation="portrait"
 
 <p>Back in onCreate, start by creating an OnClickListener:</p>
 
-	button = (Button) findViewById(R.id.button);
+	Button button = (Button) findViewById(R.id.button);
 	button.setOnClickListener(new View.OnClickListener() {
 	    @Override
 	    public void onClick(View view) {
@@ -72,7 +72,7 @@ android:screenOrientation="portrait"
 
 <p>To make a call, you first need to create an instance of SinchClient:</p>
 
-	sinchClient = Sinch.getSinchClientBuilder()
+	SinchClient sinchClient = Sinch.getSinchClientBuilder()
 	        .context(this)
 	        .userId("current-user-id")
 	        .applicationKey("app-key")
@@ -103,11 +103,11 @@ android:screenOrientation="portrait"
 
 <p>To toggle the main button between "Call" and "Hang Up," start by storing the current call:</p>
 
-private Call call;
+    private Call call;
 
 <p>Inside the onClickListener, you can make a call or hang up the current call depending on whether or not call is null:</p>
 
-	class=java>public void onClick(View view) {
+	public void onClick(View view) {
 	    if (call == null) {
 	        call = sinchClient.getCallClient().callUser("call-recipient-id");
 	        button.setText("Hang Up");
@@ -120,27 +120,27 @@ private Call call;
 
 <p>Unfortunately, this only handles the user hanging up. You will also want your app to react accordingly if the recipient hangs up. To track these changes, you will set up a CallListener that can execute code depending on the state of phone call:</p>
 
-	private class SinchCallListener implements CallListener {
-	    @Override
-	    public void onCallEnded(Call endedCall) {
-	       //call ended by either party
-	    }
+    private class SinchCallListener implements CallListener {
+        @Override
+        public void onCallEnded(Call endedCall) {
+            //call ended by either party
+        }
 
-	    @Override
-	    public void onCallEstablished(Call establishedCall) {
-	       //incoming call was picked up
-	    }
+        @Override
+        public void onCallEstablished(Call establishedCall) {
+            //incoming call was picked up
+        }
 
-	    @Override
-	    public void onCallProgressing(Call progressingCall) {
-	      //call is ringing
-	    }
+        @Override
+        public void onCallProgressing(Call progressingCall) {
+            //call is ringing
+        }
 
-	    @Override
-	    public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
-	       //don't worry about this right now
-	    }
-	}
+        @Override
+        public void onShouldSendPushNotification(Call call, List<PushPair> pushPairs) {
+            //don't worry about this right now
+        }
+    }
 
 <p>Then, add an instance of SinchCallListener to the current call in your OnClickListener:</p>
 
@@ -155,31 +155,31 @@ private Call call;
 
 <p>Next, you want the volume buttons to control the volume of the phone call while connected. Use the AudioManager provided by Android:</p>
 
-	@Override
-	public void onCallEstablished(Call establishedCall) {
-	    setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
-	}
+    @Override
+    public void onCallEstablished(Call establishedCall) {
+        setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+    }
 
-	<p>Then, to have the volume buttons go back to controlling the ringer volume when the phone call is disconnected:</p>
+<p>Then, to have the volume buttons go back to controlling the ringer volume when the phone call is disconnected:</p>
 
-	@Override
-	public void onCallEnded(Call endedCall) { 
-	    setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
-	}
+    @Override
+    public void onCallEnded(Call endedCall) { 
+        setVolumeControlStream(AudioManager.USE_DEFAULT_STREAM_TYPE);
+    }
 
 <p>To update the user on the state of the call (ringing, connected), create a textView that will appear above the button:</p>
 
-	<TextView
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:id="@+id/callState"
-	    android:layout_above="@+id/button"
-	    android:gravity="center_horizontal"
-	    android:layout_marginBottom="30dp"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"        
+        android:id="@+id/callState"
+        android:layout_above="@+id/button"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="30dp"/>
 
 <p>In onCreate, define the textView:</p>
 
-	callState = (TextView) findViewById(R.id.callState);
+    callState = (TextView) findViewById(R.id.callState);
 
 <p>Now, you can set the text to "ringing" in onCallRinging, and "connected" in onCallEstablished, and finally to "" in onCallEnded:</p>
 
