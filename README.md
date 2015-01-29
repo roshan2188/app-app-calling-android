@@ -18,7 +18,7 @@ First, you will need to create an new project in Android Studio. (You can use Ec
 
 Hold onto the key and secret from this app; you will use them in just a few minutes.
 
-Next, download the Sinch Android SDK from <a href="http://www.sinch.com/downloads/">www.sinch.com/downloads</a>. To add the Sinch SDK to your project:
+Next, download the Sinch Android SDK from <a href="https://www.sinch.com/downloads/">www.sinch.com/downloads</a>. To add the Sinch SDK to your project:
 
   <ol>
       <li>Copy the entire libs folder to your project’s root directory.</li>
