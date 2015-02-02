@@ -2,7 +2,7 @@
 
 This tutorial will walk you through building a very simple Android VoIP calling app. It will look something like this when you are finished:</p>
 
-<img id="make-call" src="images/call-hangup.png">
+![call and hangup](images/call-hangup.png)
        
        
 The completed source code for this tutorial is available at <a href="http://www.github.com/sinch/app-app-calling-android" target="_blank">github.com/sinch/app-app-calling-android</a></p>
@@ -13,8 +13,9 @@ First, you will need to create an new project in Android Studio. (You can use Ec
 
  To generate an API key and secret, create an app in the <a href="http://www.sinch.com/dashboard">Sinch Dashboard</a>. Name the app anything you like, and press "create." (You do not need a description or call control callback.)
 
-<img id="new-app-button" src="images/new-app-button.png" />
-<img id="new-app" src="images/new-app.png" />
+![new app button](images/new-app-button.png)
+		
+![new app](images/new-app.png)
 
 Hold onto the key and secret from this app; you will use them in just a few minutes.
 
@@ -241,7 +242,7 @@ android:screenOrientation="portrait"
   
 <p>In this section, you are going to add a simple login screen so that users can call more than just one person. Your login screen will look like this:</p>
        
-  <img src="images/login-screen.png" id="login-screen" style="width:50%; margin:auto; display:block;">
+![login screen](images/login-screen.png)
        
 <p>To set this up, you will need to do the following:</p>
   
