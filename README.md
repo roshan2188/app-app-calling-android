@@ -41,7 +41,7 @@ Next, download the Sinch Android SDK from <a href="https://www.sinch.com/downloa
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-<h2 id=outgoing>Make Outgoing Calls</h2>
+##Make Outgoing Calls
 
 <p>First, create a new xml file, and name it <b>call.xml</b>. Add a simple "Call" button:</p>
 
@@ -195,7 +195,7 @@ android:screenOrientation="portrait"
 
 <p>Now your app has a much better user experience for the caller! Try making a call to the SDK sample app that you set up earlier.</p>
 
-<h2 id=incoming>Receive Incoming Calls</h2>
+##Receive Incoming Calls
 
 <p>For the purposes of this tutorial, your app will automatically accept incoming calls. To start, you want your SinchClient to listen for incoming calls. Add this right before you start the SinchClient:</p>
 
@@ -238,7 +238,7 @@ android:screenOrientation="portrait"
  <li>Chat away!</li>
 </ol>
   
-<h2 id="login">Add Login</h2>
+##Add Login
   
 <p>In this section, you are going to add a simple login screen so that users can call more than just one person. Your login screen will look like this:</p>
        
